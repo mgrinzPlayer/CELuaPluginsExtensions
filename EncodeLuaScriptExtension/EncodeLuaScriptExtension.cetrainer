@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="28">
+  <CheatEntries/>
+  <UserdefinedSymbols/>
+  <LuaScript>cedir = getCheatEngineDir()
+scriptFile = cedir..'autorun\\EncodeLuaScriptExtension\\tmp.txt'
+
+if not cheatEngineIs64Bit() then
+ outFile = cedir..'autorun\\EncodeLuaScriptExtension\\encoded32.txt'
+else
+ outFile = cedir..'autorun\\EncodeLuaScriptExtension\\encoded64.txt'
+end
+
+
+sl = createStringList()
+sl.loadFromFile(scriptFile)
+f = loadstring(sl.Text)
+
+out = encodeFunction(f)
+
+sl.Text = out
+sl.saveToFile(outFile)
+closeCE()
+
+</LuaScript>
+</CheatTable>
