@@ -454,7 +454,7 @@ dealloc(newmem%cheatName%)
 
 }
 
-local extensionVersion = '1.3.5'
+local extensionVersion = '1.3.6'
 
 function myAOBInjectionTemplates.formCreateNotify(form)
   if form.ClassName~="TfrmAutoInject" then return end
@@ -599,10 +599,14 @@ function myAOBInjectionTemplates.generate(sender,chosenTemplate)
   local newScript = newScript_stringlist.Text
   newScript_stringlist.destroy()
 
-  -- it succeeded ?
-  if newScript:match('No Process Selected') or
-     newScript:match('Could not find unique AOB')
-  then showMessage("No process selected or could not find unique AOB!") return end
+  -- is process opened?
+  if newScript:match('No Process Selected') then showMessage("No process selected!") return end
+
+  -- is aob unique?
+  if newScript:match('Could not find unique AOB') then
+    showMessage("Warning. Could not find unique AOB.")
+    newScript = newScript:gsub('ERROR: Could not find unique AOB,','ERROR: Could not find unique AOB;')
+  end
 
   if not gaobisResult
   then showMessage("generateAOBInjectionScript raised exception!") return end

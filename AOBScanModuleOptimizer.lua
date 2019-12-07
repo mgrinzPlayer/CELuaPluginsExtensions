@@ -45,7 +45,7 @@ local function collectSections()
 end
 
 local function aobscanOptimizer(script,syntaxcheck)
-  -- version 1.00
+  -- version 1.01
   -- if not syntaxcheck then print(script.Text) end
   local i=0
   local sections=nil

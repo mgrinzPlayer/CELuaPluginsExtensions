@@ -1,3 +1,4 @@
+--version 1.04
 local colorTable = {-1,0x008000,0xff8000,0x95004a,0x0000ff,0x0080c0,0x8000ff,0x0000a0}
 local usedColors = {}
 
@@ -65,7 +66,8 @@ if (usedColors[1]==true) then
                         ['TfrmUltimap2']=1,
                         ['TfrmWatchlist']=1,
                         ['TfrmdissectWindow']=1,
-                        ['Tfrmpointerscanner']=1,                       }
+                        ['Tfrmpointerscanner']=1,
+                       }
 
 
     return someTForms[formClassName]~=nil
@@ -147,11 +149,11 @@ if (usedColors[1]==true) then
   ap.Title = ap.Title..' #'..colorID
 
   registerFormAddNotification(function (form)
+    if not allowedTForms(form.className) then return end
     local t=createTimer()
     t.Interval = 1
     t.OnTimer = function (timer)
       timer.destroy()
-      if not allowedTForms(form.className) then return end
       --print(form.className)
       addNicePanels(form)
     end
