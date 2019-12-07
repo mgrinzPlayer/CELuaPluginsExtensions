@@ -1,4 +1,4 @@
---version 1.04
+--version 1.05
 local colorTable = {-1,0x008000,0xff8000,0x95004a,0x0000ff,0x0080c0,0x8000ff,0x0000a0}
 local usedColors = {}
 
@@ -77,11 +77,14 @@ if (usedColors[1]==true) then
     local canvas
     local Panel1 = createPanel(form)
           Panel1.Visible = false
-          Panel1.Top = 0
-          Panel1.Left = 0
-          Panel1.Height = form.Height
-          Panel1.Width = 2
-          Panel1.Anchors = '[akTop, akLeft, akBottom]'
+          --Panel1.Top = form.Height - 2
+          --Panel1.Left = 0
+          --Panel1.Height = 2
+          --Panel1.Width = form.Width
+          Panel1.Align = alBottom
+          Panel1.Constraints.MinHeight = 2
+          Panel1.Constraints.MaxHeight = 2
+          Panel1.Anchors = '[akBottom, akLeft, akRight]'
           Panel1.bringToFront()
           Panel1.Caption = ''
           Panel1.Color = color
@@ -102,11 +105,11 @@ if (usedColors[1]==true) then
     local Panel3 = createPanel(form)
           Panel3.Visible = false
           Panel3.Top = 0
-          Panel3.Left = form.Width - 2
-          Panel3.Height = form.Height
+          Panel3.Left = 0
+          --Panel3.Height = form.Height
+          Panel3.AnchorSideBottom.Control = Panel1
           Panel3.Width = 2
-          Panel3.Stretch = true
-          Panel3.Anchors = '[akTop, akRight, akBottom]'
+          Panel3.Anchors = '[akTop, akLeft, akBottom]'
           Panel3.bringToFront()
           Panel3.Caption = ''
           Panel3.Color = color
@@ -114,12 +117,12 @@ if (usedColors[1]==true) then
 
     local Panel4 = createPanel(form)
           Panel4.Visible = false
-          Panel4.Top = form.Height - 3
-          Panel4.Left = 0
-          Panel4.Height = 2
-          Panel4.Width = form.Width
-          Panel4.Stretch = true
-          Panel4.Anchors = '[akBottom, akLeft, akRight]'
+          Panel4.Top = 0
+          Panel4.Left = form.Width - 2
+          --Panel4.Height = form.Height
+          Panel4.AnchorSideBottom.Control = Panel1
+          Panel4.Width = 2
+          Panel4.Anchors = '[akTop, akRight, akBottom]'
           Panel4.bringToFront()
           Panel4.Caption = ''
           Panel4.Color = color
