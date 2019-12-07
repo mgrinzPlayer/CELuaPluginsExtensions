@@ -21,10 +21,12 @@ if (usedColors[1]==true) then
   local function allowedTForms(formClassName)
     local someTForms = {
                         ['TAbout']=1,
+                        ['TChangeOffset']=1,
                         ['TFindDialogForm']=1,
                         ['TFindWindow']=1,
                         ['TFormDesigner']=1,
                         ['TFormMemoryRegions']=1,
+                        ['TFoundCodeDialog']=1,
                         ['TFrmMemoryRecordDropdownSettings']=1,
                         ['THotKeyForm']=1,
                         ['TInputboxTop']=1,
@@ -38,6 +40,7 @@ if (usedColors[1]==true) then
                         ['TfrmAssemblyScan']=1,
                         ['TfrmAutoInject']=1,
                         ['TfrmBreakpointlist']=1,
+                        ['TfrmChangedAddresses']=1,
                         ['TfrmCodeFilter']=1,
                         ['TfrmCodecaveScanner']=1,
                         ['TfrmDissectCode']=1,
@@ -152,12 +155,12 @@ if (usedColors[1]==true) then
   ap.Title = ap.Title..' #'..colorID
 
   registerFormAddNotification(function (form)
+    --print(form.className)
     if not allowedTForms(form.className) then return end
     local t=createTimer()
     t.Interval = 1
     t.OnTimer = function (timer)
       timer.destroy()
-      --print(form.className)
       addNicePanels(form)
     end
   end)
